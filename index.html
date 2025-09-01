@@ -17,49 +17,52 @@
     </header>
 
     <section class="card">
-      <h2>Configuración</h2>
-      <div class="grid grid-3">
-        <div class="form-control">
-          <label for="courseSelect">Campo</label>
-          <select id="courseSelect" aria-label="Seleccionar campo"></select>
-          <small class="muted">Los PAR y SI se cargarán automáticamente.</small>
-        </div>
+  <h2>Configuración</h2>
 
-        <div class="form-control">
-          <label for="allowance">Porcentaje de hándicap (Allowance %)</label>
-          <input id="allowance" type="number" min="50" max="100" step="1" value="90" />
-          <small class="muted">Fourball Match Play suele usar 90%.</small>
-        </div>
+  <!-- 1) Arriba: campo y allowance (SIN el botón aquí) -->
+  <div class="grid grid-3">
+    <div class="form-control">
+      <label for="courseSelect">Campo</label>
+      <select id="courseSelect" aria-label="Seleccionar campo"></select>
+      <small class="muted">Los PAR y SI se cargarán automáticamente.</small>
+    </div>
 
-        <div class="form-control">
-          <label>&nbsp;</label>
-          <button id="btnCompute" class="btn primary">Calcular golpes</button>
-        </div>
-      </div>
+    <div class="form-control">
+      <label for="allowance">Porcentaje de hándicap (Allowance %)</label>
+      <input id="allowance" type="number" min="50" max="100" step="1" value="90" />
+      <small class="muted">Fourball Match Play suele usar 90%.</small>
+    </div>
+  </div>
 
-      <div class="grid grid-4">
-        <div class="form-control">
-          <label for="p1hcp">Jugador 1 – HCP</label>
-          <input id="p1name" type="text" placeholder="Jugador 1" />
-          <input id="p1hcp" type="number" step="0.1" placeholder="HCP" />
-        </div>
-        <div class="form-control">
-          <label for="p2hcp">Jugador 2 – HCP</label>
-          <input id="p2name" type="text" placeholder="Jugador 2" />
-          <input id="p2hcp" type="number" step="0.1" placeholder="HCP" />
-        </div>
-        <div class="form-control">
-          <label for="p3hcp">Jugador 3 – HCP</label>
-          <input id="p3name" type="text" placeholder="Jugador 3" />
-          <input id="p3hcp" type="number" step="0.1" placeholder="HCP" />
-        </div>
-        <div class="form-control">
-          <label for="p4hcp">Jugador 4 – HCP</label>
-          <input id="p4name" type="text" placeholder="Jugador 4" />
-          <input id="p4hcp" type="number" step="0.1" placeholder="HCP" />
-        </div>
-      </div>
-    </section>
+  <!-- 2) Jugadores -->
+  <div class="grid grid-4">
+    <div class="form-control">
+      <label for="p1hcp">Jugador 1 – HCP</label>
+      <input id="p1name" type="text" placeholder="Jugador 1" />
+      <input id="p1hcp" type="number" step="0.1" placeholder="HCP" />
+    </div>
+    <div class="form-control">
+      <label for="p2hcp">Jugador 2 – HCP</label>
+      <input id="p2name" type="text" placeholder="Jugador 2" />
+      <input id="p2hcp" type="number" step="0.1" placeholder="HCP" />
+    </div>
+    <div class="form-control">
+      <label for="p3hcp">Jugador 3 – HCP</label>
+      <input id="p3name" type="text" placeholder="Jugador 3" />
+      <input id="p3hcp" type="number" step="0.1" placeholder="HCP" />
+    </div>
+    <div class="form-control">
+      <label for="p4hcp">Jugador 4 – HCP</label>
+      <input id="p4name" type="text" placeholder="Jugador 4" />
+      <input id="p4hcp" type="number" step="0.1" placeholder="HCP" />
+    </div>
+  </div>
+
+  <!-- 3) Botón debajo de los jugadores -->
+  <div class="actions">
+    <button id="btnCompute" class="btn primary">Calcular golpes</button>
+  </div>
+</section>
 
     <section class="card">
       <div class="table-tools">
