@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fourball – Reparto de Golpes por Hoyo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>Fourball – Reparto de golpes por hoyo</h1>
+      <p class="muted">
+        Selecciona el campo, introduce HCP de los 4 jugadores y el porcentaje de hándicap (Allowance %).
+        La tabla mostrará, por hoyo, los <strong>golpes recibidos</strong> de cada jugador: <strong>+1, +2 o 0</strong>.
+      </p>
+    </header>
+
+    <section class="card">
+      <h2>Configuración</h2>
+      <div class="grid grid-3">
+        <div class="form-control">
+          <label for="courseSelect">Campo</label>
+          <select id="courseSelect" aria-label="Seleccionar campo"></select>
+          <small class="muted">Los PAR y SI se cargarán automáticamente.</small>
+        </div>
+
+        <div class="form-control">
+          <label for="allowance">Porcentaje de hándicap (Allowance %)</label>
+          <input id="allowance" type="number" min="50" max="100" step="1" value="90" />
+          <small class="muted">Fourball Match Play suele usar 90%.</small>
+        </div>
+
+        <div class="form-control">
+          <label>&nbsp;</label>
+          <button id="btnCompute" class="btn primary">Calcular golpes</button>
+        </div>
+      </div>
+
+      <div class="grid grid-4">
+        <div class="form-control">
+          <label for="p1hcp">Jugador 1 – HCP</label>
+          <input id="p1name" type="text" placeholder="Jugador 1" />
+          <input id="p1hcp" type="number" step="0.1" placeholder="HCP" />
+        </div>
+        <div class="form-control">
+          <label for="p2hcp">Jugador 2 – HCP</label>
+          <input id="p2name" type="text" placeholder="Jugador 2" />
+          <input id="p2hcp" type="number" step="0.1" placeholder="HCP" />
+        </div>
+        <div class="form-control">
+          <label for="p3hcp">Jugador 3 – HCP</label>
+          <input id="p3name" type="text" placeholder="Jugador 3" />
+          <input id="p3hcp" type="number" step="0.1" placeholder="HCP" />
+        </div>
+        <div class="form-control">
+          <label for="p4hcp">Jugador 4 – HCP</label>
+          <input id="p4name" type="text" placeholder="Jugador 4" />
+          <input id="p4hcp" type="number" step="0.1" placeholder="HCP" />
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="table-tools">
+        <div class="legend">
+          <span class="pill">SI</span> = Stroke Index (índice de dificultad).
+          <span class="pill">+n</span> = golpes recibidos en ese hoyo.
+        </div>
+        <div class="status" id="statusMsg"></div>
+      </div>
+
+      <div class="table-wrap">
+        <table id="strokesTable">
+          <thead>
+            <tr>
+              <th>Hoyo</th>
+              <th>Par</th>
+              <th>SI</th>
+              <th id="hJ1">Jugador 1</th>
+              <th id="hJ2">Jugador 2</th>
+              <th id="hJ3">Jugador 3</th>
+              <th id="hJ4">Jugador 4</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <!-- filas 1..18 se generan por JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="muted small">
+      Nota: se calcula el <em>Playing Handicap</em> aplicando el Allowance % al HCP de cada jugador y
+      se juega contra el <strong>scratch</strong> (el menor PH). Los golpes se reparten por orden de SI.
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+/* ===== Fourball – Neon Gradient (fix solapes + alto contraste inputs) ===== */
+:root{
+  /* Paneles más sólidos */
+  --panel: rgba(255,255,255,.28);
+  --panel-strong: rgba(255,255,255,.36);
+  --border: rgba(255,255,255,.55);
+
+  --text: #ffffff;
+  --muted: rgba(255,255,255,.85);
+  --radius: 16px;
+  --gap: 22px; /* más aire horizontal */
+
+  /* Tintes por jugador (más visibles) */
+  --c1: rgba(0, 255, 240, .32);
+  --c2: rgba(255, 77, 122, .32);
+  --c3: rgba(255, 212, 0, .32);
+  --c4: rgba(16, 185, 129, .32);
+
+  --c1-b: rgba(0, 255, 240, .60);
+  --c2-b: rgba(255, 77, 122, .60);
+  --c3-b: rgba(255, 212, 0, .60);
+  --c4-b: rgba(16, 185, 129, .60);
+
+  /* Colores de texto para inputs (alto contraste) */
+  --ink: #0b1a2e;     /* texto oscuro dentro del input */
+  --ink-muted: #6b809c;
+  --ink-border: #cfe2ff;
+}
+
+/* Fondo gradiente morado → azul */
+html, body{
+  min-height:100%;
+  margin:0;
+  font-family: Arial, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: linear-gradient(135deg, #8e44ad 0%, #3498db 100%);
+}
+
+/* Contenedor y encabezados centrados */
+.container{ max-width: 1180px; margin: 0 auto; padding: 28px 22px 44px; }
+.header{ text-align: center; }
+.header h1{ margin: 0 0 10px; text-shadow: 0 2px 10px rgba(0,0,0,.25); }
+.muted{ color: var(--muted); }
+.small{ font-size: .95rem; }
+
+/* Tarjetas “glass” */
+.card{
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-top: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  backdrop-filter: blur(8px);
+  overflow: hidden; /* evita reboses */
+}
+
+/* ===== Grids (sin solapes) ===== */
+.grid{ display: grid; gap: var(--gap); }
+
+/* columnas elásticas con ancho mínimo, evitan que se monten */
+.grid-3{ grid-template-columns: repeat(3, minmax(260px, 1fr)); }
+.grid-4{ grid-template-columns: repeat(4, minmax(240px, 1fr)); }
+
+@media (max-width: 1180px){
+  .grid-3{ grid-template-columns: repeat(2, minmax(260px, 1fr)); }
+  .grid-4{ grid-template-columns: repeat(2, minmax(260px, 1fr)); }
+}
+@media (max-width: 720px){
+  .grid-3, .grid-4{ grid-template-columns: 1fr; }
+}
+
+/* Cada bloque de jugador/selector apila sin chocar */
+.form-control{
+  min-width: 0;                 /* clave para que el grid no “choque” */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ===== Formularios (claros y legibles) ===== */
+.form-control label{
+  display:block; margin:0; font-weight: 700; letter-spacing:.2px;
+}
+input, select, button{
+  -webkit-appearance: none; appearance: none;
+  width:100%;
+  display:block;
+  padding:12px 14px;
+  border-radius: 14px;
+  border:1px solid var(--ink-border);
+  background:#ffffff;            /* fondo blanco (alto contraste) */
+  color:var(--ink);              /* texto oscuro */
+  outline:none;
+  transition: box-shadow .2s ease, transform .05s ease, border-color .2s ease, background .2s;
+}
+input::placeholder{ color: var(--ink-muted); }
+select{ background-image: none; }
+input:focus, select:focus{
+  border-color:#98cfff;
+  box-shadow: 0 0 0 3px rgba(152,207,255,.35);
+}
+
+/* Botón principal (sólido, legible) */
+button.btn{ cursor:pointer; font-weight:900; letter-spacing:.2px; color:#0a2540; }
+button.primary{
+  background: linear-gradient(90deg, #e9f4ff, #e6f9ff);
+  border-color:#98cfff;
+}
+button.primary:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.20), inset 0 0 0 1px rgba(0,0,0,.02);
+}
+
+/* ===== Barra herramientas tabla ===== */
+.table-tools{
+  display:flex; gap:12px; justify-content:space-between; align-items:center; margin-bottom:10px;
+}
+.pill{
+  background: rgba(255,255,255,.26);
+  border:1px solid var(--border);
+  padding:4px 10px; border-radius:999px; font-size:.86rem; color:#fff;
+}
+.status{ color:#e8f7ff; opacity:.95; }
+
+/* ===== Tabla “glass” ===== */
+.table-wrap{
+  overflow:auto;
+  border:1px solid var(--border);
+  border-radius: 18px;
+  background: var(--panel-strong);
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+}
+table{
+  width:100%;
+  border-collapse: collapse;
+  min-width: 820px;
+  table-layout: fixed; /* estable y evita saltos */
+}
+thead th{
+  position: sticky; top: 0; z-index: 1;
+  text-align:center; font-weight:900; padding:12px 6px;
+  border-bottom:1px solid rgba(255,255,255,.45);
+  color:#fff;
+  background: linear-gradient(180deg, rgba(255,255,255,.34), rgba(255,255,255,.22));
+  backdrop-filter: blur(6px);
+}
+tbody tr{ transition: background .12s ease; }
+tbody tr:nth-child(even){ background: rgba(255,255,255,.10); } /* zebra visible */
+tbody tr:hover{ background: rgba(255,255,255,.18); }
+
+/* Celdas */
+tbody td{
+  text-align:center;
+  border-bottom:1px dashed rgba(255,255,255,.35);
+  padding:10px 6px;
+  color:#fff;
+}
+
+/* Par / SI fuertes */
+td.par, td.si{ font-weight:900; }
+
+/* Columnas de jugadores con tinte (sin romper layout) */
+td.strokes{ font-weight:900; letter-spacing:.2px; }
+td.j1{ background: var(--c1); border-left: 1px solid var(--c1-b); }
+td.j2{ background: var(--c2); border-left: 1px solid var(--c2-b); }
+td.j3{ background: var(--c3); border-left: 1px solid var(--c3-b); }
+td.j4{ background: var(--c4); border-left: 1px solid var(--c4-b); }
+
+/* Primera columna fuerte para guía visual */
+thead th:first-child, tbody td:first-child{ font-weight: 900; }
+
+/* Footer */
+tfoot td{
+  font-weight:900; background: rgba(255,255,255,.20);
+  border-top:1px solid rgba(255,255,255,.35); color:#fff;
+}
+
+/* Quitar flechas de number (webkit) */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
