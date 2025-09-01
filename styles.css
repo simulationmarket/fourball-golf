@@ -179,69 +179,18 @@ tfoot td{
 /* Quitar flechas de number (webkit) */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
-/* ===== Mobile comfort (añadir al FINAL de styles.css) ===== */
-@media (max-width: 820px) {
-  /* Contenido respira y ocupa todo el ancho */
-  .container { padding: 16px 12px 28px; }
-  .card { padding: 14px; border-radius: 14px; }
 
-  /* Títulos y textos algo más compactos pero legibles */
-  .header h1 { font-size: clamp(1.2rem, 5vw, 1.5rem); line-height: 1.2; }
-  .muted, .small { font-size: 0.95rem; }
+.actions{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
 
-  /* Formularios: 1 columna SIEMPRE, sin solapes y con inputs grandes */
-  .grid-3, .grid-4 { grid-template-columns: 1fr !important; gap: 16px; }
-  .form-control { min-width: 0; gap: 6px; }
-  .form-control label { font-size: 0.95rem; }
-
-  /* iOS evita zoom si font-size < 16px: fijamos 16px mínimo en inputs */
-  input, select, button {
-    font-size: 16px;             /* clave para móvil */
-    padding: 14px 14px;
-    border-radius: 14px;
-  }
-
-  /* Botón principal a ancho completo y más visible */
-  #btnCompute {
+@media (max-width: 820px){
+  .actions button{
     width: 100%;
-    margin-top: 4px;
     font-weight: 900;
     padding: 14px 16px;
   }
-
-  /* Herramientas de la tabla: menos ruido en móvil */
-  .table-tools { flex-wrap: wrap; gap: 8px; }
-  .legend { font-size: 0.9rem; }
-  .status { font-size: 0.95rem; }
-
-  /* Tabla: ocupa todo el ancho y se desplaza suave en horizontal */
-  .table-wrap {
-    margin: 0 -12px;             /* “rompe” el padding lateral p/usar todo el ancho */
-    border-radius: 12px;
-  }
-  table { 
-    min-width: 680px;            /* suficientemente ancha para 4 jugadores */
-    font-size: 0.98rem; 
-  }
-  thead th { padding: 10px 6px; }
-  tbody td { padding: 10px 6px; }
-
-  /* Columnas de jugadores: tinte un poco más sólido en móvil para legibilidad */
-  td.j1 { background: rgba(0,255,240,.40); }
-  td.j2 { background: rgba(255,77,122,.40); }
-  td.j3 { background: rgba(255,212,0,.40); color: #2a2100; }  /* mejor contraste */
-  td.j4 { background: rgba(16,185,129,.40); }
-
-  /* Scrollbar más fino y visible en móvil (opcional) */
-  .table-wrap::-webkit-scrollbar { height: 8px; }
-  .table-wrap::-webkit-scrollbar-thumb { background: rgba(255,255,255,.35); border-radius: 6px; }
-  .table-wrap { scrollbar-color: rgba(255,255,255,.35) transparent; scrollbar-width: thin; }
-}
-
-@media (max-width: 420px) {
-  /* Extra: en móviles muy estrechos subimos un pelín el tamaño de todo */
-  table { font-size: 1.02rem; }
-  .header h1 { font-size: clamp(1.2rem, 6.2vw, 1.45rem); }
-  input, select, button { padding: 15px 16px; }
 }
 
